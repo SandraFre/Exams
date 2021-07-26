@@ -1,24 +1,24 @@
 package lt.codeacademy.data;
 
 public class Exam {
-    private int id;
+    private String id;
     private String title;
     private ExamType examType;
 
     public Exam() {
     }
 
-    public Exam(int id, String title, ExamType examType) {
+    public Exam(String id, String title, ExamType examType) {
         this.id = id;
         this.title = title;
         this.examType = examType;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
