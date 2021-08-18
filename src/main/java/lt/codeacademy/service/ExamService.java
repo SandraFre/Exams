@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class ExamService {
 
     private final Map<String, Student> students = new HashMap<>();
-    private final Map<String, Exam> exams =  new HashMap<>();
 
     public void startExam(){
         Scanner sc = new Scanner(System.in);
@@ -25,6 +24,8 @@ public class ExamService {
         Student student = new Student(studentId, studentName,studentSurname);
 
         students.put(studentId, student);
+
+
 
     }
 
