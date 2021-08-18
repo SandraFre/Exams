@@ -1,0 +1,18 @@
+{
+  "id" : "124",
+  "title" : "OOP pagrindai",
+  "examType" : "TEST",
+  "answers" : [ {
+    "question" : 1,
+    "answer" : "a"
+  }, {
+    "question" : 2,
+    "answer" : "a"
+  }, {
+    "question" : 3,
+    "answer" : "d"
+  }, {
+    "question" : 4,
+    "answer" : "c"
+  } ]
+}
