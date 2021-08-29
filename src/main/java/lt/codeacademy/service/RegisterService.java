@@ -15,7 +15,7 @@ public class RegisterService {
     protected Map<String, String> teachersList = new HashMap<>();
     protected Map<String, String> studentsList = new HashMap<>();
 
-    protected List<Student> allStudents = new ArrayList<Student>();
+    protected List<Student> allStudents = new ArrayList<>();
     protected ObjectMapper mapper = new ObjectMapper();
     protected File studentFile = new File("students.json");
 
@@ -60,7 +60,7 @@ public class RegisterService {
     protected void studentRegistration(Scanner sc) {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        if (allStudents != null) {
+        if (allStudents != null && !studentFile.exists()) {
             createFile();
         }
 
@@ -78,19 +78,15 @@ public class RegisterService {
 
         writeToFile(student);
 
-        String userName = id;
-
         String password = getCorrectPassword(sc);
 
-        studentsList.put(userName, password);
+        studentsList.put(id, password);
         System.out.println("Student created successfully");
     }
 
     private void createFile() {
         try {
-            if (!studentFile.exists()) {
                 studentFile.createNewFile();
-            }
         } catch (IOException e) {
             System.out.println(e);
         }

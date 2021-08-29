@@ -8,6 +8,7 @@ import lt.codeacademy.data.ExamAnswer;
 import lt.codeacademy.data.ExamType;
 import lt.codeacademy.service.ExamService;
 import lt.codeacademy.service.LoginService;
+import lt.codeacademy.service.MenuService;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +18,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        LoginService ls = new LoginService();
-        ls.menu();
+        MenuService ms = new MenuService();
+        ms.menu();
 
 //        List<Exam> exams = new ArrayList<>();
 //        exams.add(new Exam("124", "OOP pagrindai", ExamType.TEST));
