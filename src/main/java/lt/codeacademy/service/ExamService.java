@@ -29,7 +29,19 @@ public class ExamService {
 
     }
 
-    public void examResult(){
+    public void examStudentResult(){
+
+    }
+
+    public void addExam(){
+
+    }
+
+    public void editExam(){
+
+    }
+
+    public void examAllResults(){
 
     }
 
