@@ -2,12 +2,10 @@ package lt.codeacademy.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class LoginService extends RegisterService {
-    ExamService es = new ExamService();
+    StudentMenuService ss = new StudentMenuService();
 
     public void teacherLogin(Scanner sc) {
         System.out.println("*** Teacher Login ***");
@@ -34,7 +32,7 @@ public class LoginService extends RegisterService {
         String encodedPassword = studentsList.get(id);
         if (encodedPassword != null && encodedPassword.equals(DigestUtils.sha256Hex(password))) {
             System.out.println("Login successful");
-            es.startExam();
+            ss.menu();
         } else {
             System.out.println("Login error. Please check your credentials");
         }

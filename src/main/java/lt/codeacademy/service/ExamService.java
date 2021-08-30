@@ -29,4 +29,8 @@ public class ExamService {
 
     }
 
+    public void examResult(){
+
+    }
+
 }
