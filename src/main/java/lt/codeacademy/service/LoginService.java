@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class LoginService extends RegisterService {
     StudentMenuService ss = new StudentMenuService();
+    TeacherMenuService ts = new TeacherMenuService();
 
     public void teacherLogin(Scanner sc) {
         System.out.println("*** Teacher Login ***");
@@ -17,6 +18,7 @@ public class LoginService extends RegisterService {
         String encodedPassword = teachersList.get(username);
         if (encodedPassword != null && encodedPassword.equals(DigestUtils.sha256Hex(password))) {
             System.out.println("Login successful");
+            ts.menu();
         } else {
             System.out.println("Login error. Please check your credentials");
         }
