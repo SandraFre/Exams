@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 public class MenuService {
     private LoginService ls = new LoginService();
-    private RegisterService rs = new RegisterService();
 
     public void menu() {
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("Please select menu item:");
         boolean isLoading = true;
         while (isLoading) {
 
@@ -60,8 +59,8 @@ public class MenuService {
             String choice = sc.nextLine();
 
             switch (choice) {
-                case ("1") -> rs.teacherRegistration(sc);
-                case ("2") -> rs.studentRegistration(sc);
+                case ("1") -> ls.teacherRegistration(sc);
+                case ("2") -> ls.studentRegistration(sc);
                 case ("0") -> menu();
                 default -> System.out.println("Please select menu item:");
 

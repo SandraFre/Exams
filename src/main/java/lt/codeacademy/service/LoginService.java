@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class LoginService extends RegisterService {
+    ExamService es = new ExamService();
 
     public void teacherLogin(Scanner sc) {
         System.out.println("*** Teacher Login ***");
@@ -33,6 +34,7 @@ public class LoginService extends RegisterService {
         String encodedPassword = studentsList.get(id);
         if (encodedPassword != null && encodedPassword.equals(DigestUtils.sha256Hex(password))) {
             System.out.println("Login successful");
+            es.startExam();
         } else {
             System.out.println("Login error. Please check your credentials");
         }
