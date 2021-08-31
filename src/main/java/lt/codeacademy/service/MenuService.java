@@ -1,9 +1,11 @@
 package lt.codeacademy.service;
 
+import lt.codeacademy.service.LoginService;
+
 import java.util.Scanner;
 
 public class MenuService {
-    private LoginService ls = new LoginService();
+    private final LoginService ls = new LoginService();
 
     public void menu() {
         Scanner sc = new Scanner(System.in);

@@ -5,6 +5,9 @@ import java.util.List;
 public class ExamAnswer extends Exam{
     List<Answer> answers;
 
+    public ExamAnswer() {
+    }
+
     public ExamAnswer(List<Answer> answers) {
         this.answers = answers;
     }

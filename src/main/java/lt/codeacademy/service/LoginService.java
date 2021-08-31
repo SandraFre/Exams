@@ -18,7 +18,7 @@ public class LoginService extends RegisterService {
         String encodedPassword = teachersList.get(username);
         if (encodedPassword != null && encodedPassword.equals(DigestUtils.sha256Hex(password))) {
             System.out.println("Login successful");
-            ts.menu();
+            ts.teacherMenu();
         } else {
             System.out.println("Login error. Please check your credentials");
         }
@@ -34,7 +34,7 @@ public class LoginService extends RegisterService {
         String encodedPassword = studentsList.get(id);
         if (encodedPassword != null && encodedPassword.equals(DigestUtils.sha256Hex(password))) {
             System.out.println("Login successful");
-            ss.menu();
+            ss.studentMenu();
         } else {
             System.out.println("Login error. Please check your credentials");
         }
