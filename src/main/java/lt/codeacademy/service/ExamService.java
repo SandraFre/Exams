@@ -14,13 +14,12 @@ public class ExamService {
     private List<Exam> exams = new ArrayList<>();
     private List<ExamAnswer> answers = new ArrayList<>();
     private List<StudentExamAnswer> studentExams = new ArrayList<>();
-
+    private ObjectMapper mapper = new ObjectMapper();
 
     public void createExam() {
 
-        exams.add(new Exam("124", "OOP pagrindai", ExamType.TEST));
 
-        ObjectMapper mapper = new ObjectMapper();
+        exams.add(new Exam("124", "OOP pagrindai", ExamType.TEST));
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -35,28 +34,30 @@ public class ExamService {
 
         File answerFile = new File("answers\\" + examAnswer.getId() + "_answer.json");
 
-        try {
-            if (!answerFile.exists()) {
-                answerFile.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        createFile(answerFile);
 
-        try {
-            mapper.writeValue(answerFile, examAnswer);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        writeToFile(answerFile, answers);
+//        try {
+//            mapper.writeValue(answerFile, examAnswer);
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        }
 
     }
 
 
     public void startExam() {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
         createExam();
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter exam id:");
         String idEntered = sc.nextLine();
+        System.out.println("Please enter your student id:");
+        String studentId = sc.nextLine();
+        System.out.println("Please enter your name:");
+        String studentName = sc.nextLine();
+        System.out.println("Please enter your surname:");
+        String studentSurname = sc.nextLine();
         List<Answer> studentAnswers = new ArrayList<>();
         for (Exam e : exams) {
             if (idEntered.equals(e.getId())) {
@@ -76,8 +77,15 @@ public class ExamService {
                     }
                 }
                 ExamAnswer stAnswer = new ExamAnswer(e.getId(), e.getTitle(), e.getExamType(), studentAnswers);
-                studentExams.add(new StudentExamAnswer(stAnswer));
+                studentExams.add(new StudentExamAnswer(studentId, studentName, studentSurname, stAnswer));
             }
+
+            File studentExamFile = new File("exams\\" + idEntered + "\\" + studentId + "_studentExam.json");
+
+            createFile(studentExamFile);
+
+            writeToFile(studentExamFile, studentExams);
+
         }
     }
 
@@ -95,6 +103,24 @@ public class ExamService {
 
     public void examAllResults() {
 
+    }
+
+    private void createFile(File file) {
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException exception) {
+            System.out.println(exception);
+        }
+    }
+
+    private void writeToFile(File file, List<?> list) {
+        try {
+            mapper.writeValue(file, list);
+        } catch (IOException exception) {
+            System.out.println(exception);
+        }
     }
 
 }
