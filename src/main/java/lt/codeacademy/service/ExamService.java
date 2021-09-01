@@ -35,7 +35,6 @@ public class ExamService {
         File answerFile = new File("answers\\" + examAnswer.getId() + "_answer.json");
 
         createFile(answerFile);
-
         writeToFile(answerFile, answers);
 //        try {
 //            mapper.writeValue(answerFile, examAnswer);
@@ -83,14 +82,45 @@ public class ExamService {
             File studentExamFile = new File("exams\\" + idEntered + "\\" + studentId + "_studentExam.json");
 
             createFile(studentExamFile);
-
             writeToFile(studentExamFile, studentExams);
-
         }
     }
 
     public void examStudentResult() {
+        List<String > answersToCheck = new ArrayList<>();
+        List<Answer> differences = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int grade = 0;
+        int count = 0;
 
+        System.out.println("Enter student id:");
+        String studentId = sc.nextLine();
+
+        System.out.println("Enter exam id:");
+        String examId = sc.nextLine();
+
+        for (StudentExamAnswer studentExam : studentExams) {
+            if (studentExam.getId().equals(studentId)) {
+                answersToCheck = studentExam.getExamAnswer().getAnswers().stream()
+                        .map(Answer::getAnswer)
+                        .collect(Collectors.toList());
+            }
+        }
+
+        for (int i = 0; i < answers.size(); i++) {
+            if (answers.get(i).getId().equals(examId)) {
+                List<String > finalAnswersToCheck = answersToCheck;
+                differences = (answers.get(i).getAnswers().stream()
+                        .filter(e -> !finalAnswersToCheck.contains(e))
+                        .collect(Collectors.toList()));
+            }
+        }
+
+        count = differences.size();
+
+        grade = (answersToCheck.size()-count)/answersToCheck.size()*100;
+
+        System.out.println("Your grade for the exam :" + grade);
     }
 
     public void addExam() {
