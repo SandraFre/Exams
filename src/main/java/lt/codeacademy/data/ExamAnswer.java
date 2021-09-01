@@ -3,7 +3,7 @@ package lt.codeacademy.data;
 import java.util.List;
 
 public class ExamAnswer extends Exam{
-    List<Answer> answers;
+    private List<Answer> answers;
 
     public ExamAnswer() {
     }
